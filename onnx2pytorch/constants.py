@@ -1,7 +1,7 @@
 from torch import nn
 from torch.nn.modules.conv import _ConvNd
 from torch.nn.modules.pooling import _MaxPoolNd
-from onnx2pytorch.operations import (
+from .operations import (
     BatchNormWrapper,
     InstanceNormWrapper,
     Loop,

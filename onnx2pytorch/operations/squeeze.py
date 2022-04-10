@@ -1,7 +1,7 @@
 import torch
 
-from onnx2pytorch.operations.base import Operator
-from onnx2pytorch.utils import get_selection
+from ..operations.base import Operator
+from ..utils import get_selection
 
 
 class Squeeze(Operator):

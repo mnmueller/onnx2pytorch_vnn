@@ -1,8 +1,8 @@
 import torch
 from torch import nn
 
-from onnx2pytorch.operations.base import Operator
-from onnx2pytorch.utils import assign_values_to_dim, get_selection
+from ..operations.base import Operator
+from ..utils import assign_values_to_dim, get_selection
 
 
 class Reshape(Operator):

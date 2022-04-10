@@ -3,7 +3,7 @@ import warnings
 import onnx
 from onnx import numpy_helper
 
-from onnx2pytorch.utils import (
+from ..utils import (
     extract_padding_params_for_conv_layer,
     extract_padding_params,
 )

@@ -1,6 +1,6 @@
 import torch.nn.functional as F
 
-from onnx2pytorch.operations.base import Operator
+from ..operations.base import Operator
 
 
 # TODO @Robin Changed here

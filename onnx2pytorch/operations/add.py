@@ -3,8 +3,8 @@ import warnings
 import torch
 from torch import nn
 
-from onnx2pytorch.utils import is_constant, get_selection
-from onnx2pytorch.operations.base import Operator
+from ..utils import is_constant, get_selection
+from ..operations.base import Operator
 
 
 class Add(Operator):

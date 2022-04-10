@@ -3,7 +3,7 @@ import warnings
 import torch
 from torch.nn import functional as F
 
-from onnx2pytorch.operations.base import Operator
+from ..operations.base import Operator
 
 empty_tensor = torch.Tensor([])
 

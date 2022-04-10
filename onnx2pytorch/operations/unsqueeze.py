@@ -1,7 +1,7 @@
 import torch
 from torch import nn
 
-from onnx2pytorch.operations.base import Operator
+from ..operations.base import Operator
 
 
 class Unsqueeze(Operator):

@@ -3,12 +3,12 @@ import torch
 from torch import nn
 from onnx import numpy_helper
 
-from onnx2pytorch.operations import (
+from ..operations import (
     BatchNormWrapper,
     InstanceNormWrapper,
     LSTMWrapper,
 )
-from onnx2pytorch.convert.attribute import extract_attributes, extract_attr_values
+from .attribute import extract_attributes, extract_attr_values
 
 
 def extract_params(params):

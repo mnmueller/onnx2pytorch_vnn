@@ -2,8 +2,8 @@ from itertools import accumulate
 
 import torch
 
-from onnx2pytorch.operations.base import Operator
-from onnx2pytorch.utils import assign_values_to_dim
+from ..operations.base import Operator
+from ..utils import assign_values_to_dim
 
 
 class Split(Operator):

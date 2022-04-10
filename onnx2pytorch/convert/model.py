@@ -11,19 +11,19 @@ from torch import nn
 from torch.jit import TracerWarning
 from torch.nn.modules.linear import Identity
 
-from onnx2pytorch.constants import (
+from ..constants import (
     COMPOSITE_LAYERS,
     MULTIOUTPUT_LAYERS,
     STANDARD_LAYERS,
 )
-from onnx2pytorch.convert.debug import debug_model_conversion
-from onnx2pytorch.convert.operations import (
+from .debug import debug_model_conversion
+from .operations import (
     convert_operations,
     get_buffer_name,
     get_init_parameter,
     Loop,
 )
-from onnx2pytorch.utils import (
+from ..utils import (
     get_inputs_names,
     get_outputs_names,
 )

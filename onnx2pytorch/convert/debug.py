@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 
-from onnx2pytorch.utils import get_activation_value
+from ..utils import get_activation_value
 
 
 def debug_model_conversion(onnx_model, inputs, pred_act, node, rtol=1e-3, atol=1e-4):

@@ -11,7 +11,7 @@ from onnx import numpy_helper
 from torch import nn
 from torch.nn.modules.linear import Identity
 
-from onnx2pytorch.utils import (
+from ..utils import (
     get_inputs_names,
     get_outputs_names,
 )

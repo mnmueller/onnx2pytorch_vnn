@@ -1,5 +1,5 @@
 from torch.nn.functional import one_hot
-from onnx2pytorch.operations.base import Operator
+from ..operations.base import Operator
 
 
 class OneHot(Operator):

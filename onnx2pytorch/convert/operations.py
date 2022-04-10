@@ -9,18 +9,18 @@ from torch.nn import functional as F
 from onnx import numpy_helper
 from torch.nn.modules.linear import Identity
 
-from onnx2pytorch.convert.attribute import extract_attributes
-from onnx2pytorch.convert.layer import (
+from .attribute import extract_attributes
+from .layer import (
     convert_layer,
     convert_linear_layer,
     convert_batch_norm_layer,
     convert_instance_norm_layer,
     convert_lstm_layer,
 )
-from onnx2pytorch.operations import *
-from onnx2pytorch.operations.base import OperatorWrapper
-from onnx2pytorch.operations import Resize, Upsample
-from onnx2pytorch.utils import (
+from ..operations import *
+from ..operations.base import OperatorWrapper
+from ..operations import Resize, Upsample
+from ..utils import (
     get_inputs_names,
     get_outputs_names,
     value_wrapper,
