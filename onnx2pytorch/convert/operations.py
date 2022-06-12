@@ -132,7 +132,7 @@ def convert_operations(onnx_graph, opset_version, batch_dim=0, enable_pruning=Tr
             op = GlobalAveragePool()
         elif node.op_type == "Greater":
             op = OperatorWrapper(torch.greater)
-        elif node.op_type == "Identity":
+        elif node.op_type == "Identity" or node.op_type == "Dropout":
             op = nn.Identity()
         elif node.op_type == "InstanceNormalization":
             op = convert_instance_norm_layer(node, params=params)
