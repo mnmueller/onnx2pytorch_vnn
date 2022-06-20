@@ -188,4 +188,5 @@ def extract_attributes(node):
             raise NotImplementedError(
                 "Extraction of attribute {} not implemented.".format(attr.name)
             )
+        
     return kwargs

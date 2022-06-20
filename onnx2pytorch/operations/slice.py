@@ -33,9 +33,9 @@ def _to_positive_step(orig_slice, N):
 class Slice(nn.Module):
     def __init__(self, dim=None, starts=None, ends=None, steps=None):
         self.dim = [dim] if isinstance(dim, int) else dim
-        self.starts = starts
-        self.ends = ends
-        self.steps = steps
+        self.starts = [starts] if isinstance(dim, int) else dim
+        self.ends = [ends] if isinstance(dim, int) else dim
+        self.steps = [steps] if isinstance(dim, int) else dim
         super().__init__()
 
     def forward(

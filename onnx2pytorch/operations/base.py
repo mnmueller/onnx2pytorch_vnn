@@ -23,7 +23,6 @@ class Operator(nn.Module, ABC):
         axis = set(range(len(input_shape))) - {input_feature_axis}
         return tuple(axis)
 
-
 class OperatorWrapper(Operator, ABC):
     def __init__(self, op):
         """

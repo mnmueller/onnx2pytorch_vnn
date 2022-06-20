@@ -54,7 +54,7 @@ def get_init_parameter(modules, item, default):
     return default
 
 
-def convert_operations(onnx_graph, opset_version, batch_dim=0, enable_pruning=True):
+def convert_operations(onnx_graph, opset_version, batch_dim=0, enable_pruning=True, const_mapping=None):
     """
     Convert onnx model operations. Yields onnx's operator_id, operator_name and
     converted pytorch operator.
@@ -95,7 +95,8 @@ def convert_operations(onnx_graph, opset_version, batch_dim=0, enable_pruning=Tr
         elif node.op_type == "Clip":
             op = Clip(**extract_attributes(node))
         elif node.op_type == "Concat":
-            op = partial(torch.cat, **extract_attributes(node))
+            op = Concat(**extract_attributes(node))
+            # op = partial(torch.cat, **extract_attributes(node))
         elif node.op_type == "Constant":
             op = Constant(**extract_attributes(node))
         elif node.op_type == "ConstantOfShape":
@@ -178,7 +179,7 @@ def convert_operations(onnx_graph, opset_version, batch_dim=0, enable_pruning=Tr
         elif node.op_type == "Min":
             op = OperatorWrapper(torch.min)
         elif node.op_type == "Mul":
-            op = OperatorWrapper(torch.mul)
+            op = Mul()
         elif node.op_type == "NonMaxSuppression":
             op = NonMaxSuppression(**extract_attributes(node))
         elif node.op_type == "Not":
@@ -236,7 +237,18 @@ def convert_operations(onnx_graph, opset_version, batch_dim=0, enable_pruning=Tr
         elif node.op_type == "Sigmoid":
             op = nn.Sigmoid()
         elif node.op_type == "Slice":
-            op = Slice(**extract_attributes(node))
+            if len(node.input) > 0:
+                starts, ends, axes, steps = node.input[1:]
+                assert const_mapping is not None
+                starts = const_mapping[starts].item()
+                ends = const_mapping[ends].item()
+                if ends > 10e5: # Handles the case where we go to the end and the corresponding value is max float
+                    ends = -1
+                dim = const_mapping[axes].item()
+                steps = const_mapping[steps].item()
+                op = Slice(starts=starts, ends=ends, dim=dim, steps=steps)
+            else:
+                op = Slice(**extract_attributes(node))
         elif node.op_type == "Softmax":
             kwargs = dict(dim=-1)
             kwargs.update(extract_attributes(node))
@@ -258,6 +270,7 @@ def convert_operations(onnx_graph, opset_version, batch_dim=0, enable_pruning=Tr
             op = Squeeze(opset_version=opset_version, **extract_attributes(node))
         elif node.op_type == "Sub":
             op = OperatorWrapper(torch.sub)
+            #op = OperatorWrapper(torch.sub)
         elif node.op_type == "Tanh":
             op = OperatorWrapper(torch.tanh)
         elif node.op_type == "ThresholdedRelu":

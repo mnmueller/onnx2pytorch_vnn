@@ -3,6 +3,7 @@ from .batchnorm import BatchNormWrapper
 from .bitshift import BitShift
 from .cast import Cast
 from .clip import Clip
+from .concat import Concat
 from .constant import Constant
 from .constantofshape import ConstantOfShape
 from .div import Div
@@ -15,6 +16,7 @@ from .instancenorm import InstanceNormWrapper
 from .loop import Loop
 from .lstm import LSTMWrapper
 from .matmul import MatMul
+from .mul import Mul
 from .nonmaxsuppression import NonMaxSuppression
 from .onehot import OneHot
 from .pad import Pad
@@ -43,6 +45,7 @@ __all__ = [
     "BitShift",
     "Cast",
     "Clip",
+    "Concat",
     "Constant",
     "ConstantOfShape",
     "Div",
@@ -55,6 +58,7 @@ __all__ = [
     "Loop",
     "LSTMWrapper",
     "MatMul",
+    "Mul",
     "NonMaxSuppression",
     "OneHot",
     "Pad",
