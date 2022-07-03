@@ -71,7 +71,7 @@ def convert_layer(node, layer_type, params=None):
         load_params(layer, weight, bias)
     else:
         # initialize operations without parameters (MaxPool, AvgPool, etc.)
-        #if layer_type == "MaxPool":
+        # if layer_type == "MaxPool":
         #    kwargs["return_indices"] = True
 
         # if padding is a layer, remove from kwargs and prepend later
@@ -136,6 +136,9 @@ def convert_linear_layer(node, params):
     # apply onnx gemm attributes
     if dc.get("transpose_weight"):
         layer.weight.data = layer.weight.data.t()
+        in_features = layer.in_features
+        layer.in_features = layer.out_features
+        layer.out_features = in_features
 
     layer.weight.data *= dc.get("weight_multiplier")
     if layer.bias is not None:
